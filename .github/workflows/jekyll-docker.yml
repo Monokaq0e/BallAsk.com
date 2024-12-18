@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AskMePla.com - Магический Шар</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .answer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3e7;
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AskMePla - Магический Шар</h1>
+    <p>Задайте свой вопрос и получите ответ!</p>
+    <form id="questionForm">
+        <input type="text" id="question" placeholder="Введите свой вопрос" required>
+        <button type="submit">Спросить</button>
+    </form>
+
+    <div class="answer" id="answer"></div>
+
+    <script>
+        // Массив возможных ответов
+        const responses = ["Да", "Нет", "Может быть", "Наверное", "Точно нет", "Без сомнений, да"];
+
+        // Функция для получения случайного ответа
+        function getRandomAnswer() {
+            const randomIndex = Math.floor(Math.random() * responses.length);
+            return responses[randomIndex];
+        }
+
+        // Обработчик события для формы
+        document.getElementById("questionForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Останавливаем отправку формы
+
+            const question = document.getElementById("question").value;
+            if (question.trim() === "") {
+                alert("Пожалуйста, задайте вопрос.");
+                return;
+            }
+
+            // Показываем случайный ответ
+            const answer = getRandomAnswer();
+            document.getElementById("answer").innerHTML = `<strong>Ваш вопрос:</strong> ${question}<br><strong>Ответ:</strong> ${answer}`;
+        });
+    </script>
+</body>
+</html>
